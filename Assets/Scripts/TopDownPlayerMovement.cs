@@ -6,8 +6,9 @@ public class TopDownPlayerMovement : MonoBehaviour
 {
     [Tooltip("The speed at which the player ACCELERATES at")]
     [SerializeField] float PlayerAccelerationSpeed = 5.0f;
-    [Tooltip("The ")]
+    [Tooltip("The Player's max move speed")]
     [SerializeField] float PlayerMaxMoveSpeed = 3.0f;
+    [Tooltip("The rate that the player slows down")]
     [SerializeField] float DampingCoefficient = 0.97f;
     Rigidbody2D RefRigidbody = null;
 
