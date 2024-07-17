@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -424,6 +423,9 @@ MonoBehaviour:
   EnemyHealth: 5
   PlayerHealthDisplay: {fileID: 236024673}
   EnemyHealthDisplay: {fileID: 339123877}
+  PlayerMissChance: 10
+  PlayerDamageMin: 1
+  PlayerDamageMax: 5
 --- !u!4 &772617862
 Transform:
   m_ObjectHideFlags: 0

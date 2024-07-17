@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHitEnemy : MonoBehaviour
 {
+    [SerializeField] int EnemyHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,8 @@ public class PlayerHitEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Object TurnBasedCombat = FindObjectOfType<TurnBasedCombat>();
         SceneManager.LoadScene("Combat");
+        FindObjectOfType<TurnBasedCombat>().SetEnemyHealth(EnemyHealth);
     }
 }

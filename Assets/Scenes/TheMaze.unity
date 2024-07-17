@@ -677,6 +677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900476b399f18c44eb718e8b24e07337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyHealth: 10
 --- !u!212 &387586848
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2572,6 +2573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900476b399f18c44eb718e8b24e07337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyHealth: 0
 --- !u!212 &1041307213
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2852,6 +2854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900476b399f18c44eb718e8b24e07337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyHealth: 0
 --- !u!61 &1312131117
 BoxCollider2D:
   m_ObjectHideFlags: 0
