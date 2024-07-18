@@ -18,6 +18,7 @@ public class TurnBasedCombat : MonoBehaviour
     [SerializeField] int SpecialMoveMulti = 2;
     [SerializeField] int RecoilDamage = 2;
     int EnemyHealth = 10;
+    GameObject enemy = null;
     
     
 

@@ -21,7 +21,9 @@ public class PlayerHitEnemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Object TurnBasedCombat = FindObjectOfType<TurnBasedCombat>();
+        Destroy(gameObject);
         SceneManager.LoadScene("Combat");
         FindObjectOfType<TurnBasedCombat>().SetEnemyHealth(EnemyHealth);
+        
     }
 }

@@ -11,6 +11,7 @@ public class TopDownPlayerMovement : MonoBehaviour
     [Tooltip("The rate that the player slows down")]
     [SerializeField] float DampingCoefficient = 0.97f;
     Rigidbody2D RefRigidbody = null;
+    Vector2 position = Vector2.zero;
 
     private void Awake()
     {
@@ -67,5 +68,12 @@ public class TopDownPlayerMovement : MonoBehaviour
             // by a value less than one each frame.
             RefRigidbody.velocity *= DampingCoefficient;
         }
+
+        position = transform.position;
+    }
+
+    public void resetPosition()
+    {
+        transform.position = position;
     }
 }
