@@ -139,6 +139,7 @@ public class TurnBasedCombat : MonoBehaviour
         {
             //WIN THE GAME
             Debug.Log("All enemies have been slain");
+            SceneManager.LoadScene("EndScreen");
         }
         SceneManager.LoadScene("TheMaze");
     }
