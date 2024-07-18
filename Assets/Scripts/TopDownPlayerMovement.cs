@@ -25,7 +25,7 @@ public class TopDownPlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        FindObjectOfType<CanvasChecker>().hide();
     }
 
     // Update is called once per frame

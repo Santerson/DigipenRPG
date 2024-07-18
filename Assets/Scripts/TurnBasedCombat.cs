@@ -91,8 +91,9 @@ public class TurnBasedCombat : MonoBehaviour
         }
 
     }
-    void UpdateHealth()
+    public void UpdateHealth()
     {
+        
         EnemyHealthDisplay.text = ("Enemy Health:" + EnemyHealth);
         PlayerHealthDisplay.text = ("Player Health: " + PlayerHealth);
     }
