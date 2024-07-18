@@ -20,7 +20,7 @@ public class TurnBasedCombat : MonoBehaviour
     [SerializeField] int SpecialMoveMulti = 2;
     [SerializeField] int RecoilDamage = 2;
     int EnemyHealth = 3;
-    int EnemiesFought = 0;
+    public int EnemiesFought = 0;
     GameObject enemy = null;
     
     
@@ -86,6 +86,11 @@ public class TurnBasedCombat : MonoBehaviour
             PlayerHealth--;
             UpdateHealth();
             Debug.Log("Enemy attacked you for 1 damage");
+            if (PlayerHealth <= 0)
+            {
+                SceneManager.LoadScene("You Suck");
+                FindObjectOfType<CanvasChecker>().hide();
+            }
         }
         else if (action == 1)
         {
@@ -121,9 +126,6 @@ public class TurnBasedCombat : MonoBehaviour
         if (EnemiesFought == 2)
         {
             EnemyHealth = 5;
-
-            // Wall when EnemiesFought equals 2
-            Instantiate(wallPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         }
         else
         {
@@ -145,7 +147,10 @@ public class TurnBasedCombat : MonoBehaviour
             Debug.Log("All enemies have been slain");
             SceneManager.LoadScene("EndScreen");
         }
-        SceneManager.LoadScene("TheMaze");
+        else
+        {
+            SceneManager.LoadScene("TheMaze");
+        }
     }
 }
 
