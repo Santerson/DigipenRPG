@@ -29,7 +29,7 @@ public class TurnBasedCombat : MonoBehaviour
     
     void Start()
     {
-        StartBattle();
+
     }
 
     // Update is called once per frame
@@ -56,6 +56,7 @@ public class TurnBasedCombat : MonoBehaviour
 
         if (EnemyHealth <= 0)
         {
+
             EndBattle();
         }
         else { EnemyTurn(0); }
@@ -116,9 +117,6 @@ public class TurnBasedCombat : MonoBehaviour
 
     public void StartBattle()
     {
-        UpdateHealth();
-        FindObjectOfType<CanvasChecker>().show();
-        Debug.Log("Battle Start");
         if (EnemiesFought == 2)
         {
             EnemyHealth = 5;
@@ -127,11 +125,21 @@ public class TurnBasedCombat : MonoBehaviour
         {
             EnemyHealth = 3;
         }
+        UpdateHealth();
+        FindObjectOfType<CanvasChecker>().show();
+        Debug.Log("Battle Start");
+        
     }
 
     public void EndBattle()
     {
         FindObjectOfType<CanvasChecker>().hide();
+        EnemiesFought++;
+        if (EnemiesFought == 3)
+        {
+            //WIN THE GAME
+            Debug.Log("All enemies have been slain");
+        }
         SceneManager.LoadScene("TheMaze");
     }
 }
