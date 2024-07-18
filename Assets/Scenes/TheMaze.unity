@@ -726,7 +726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900476b399f18c44eb718e8b24e07337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyHealth: 10
+  EnemyHealth: 3
 --- !u!212 &387586848
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4744,6 +4744,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 226738515}
     m_Modifications:
+    - target: {fileID: 60389139713056332, guid: 756635a8bfab15c4d99321b116b8e317, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6551472980047881320, guid: 756635a8bfab15c4d99321b116b8e317, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -4791,6 +4795,10 @@ PrefabInstance:
     - target: {fileID: 7505849496873750155, guid: 756635a8bfab15c4d99321b116b8e317, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.472
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034929366844722514, guid: 756635a8bfab15c4d99321b116b8e317, type: 3}
+      propertyPath: EnemyHealth
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

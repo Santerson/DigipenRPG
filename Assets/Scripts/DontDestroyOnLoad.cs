@@ -26,4 +26,10 @@ public class DontDestroyOnLoad : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
+
+    public void StartBattle()
+    {
+        Debug.Log("Started Battle");
+        FindObjectOfType<TurnBasedCombat>().StartBattle();
+    }
 }

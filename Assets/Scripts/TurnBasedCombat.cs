@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,7 +18,8 @@ public class TurnBasedCombat : MonoBehaviour
     [SerializeField] int PlayerDamageMax = 2;
     [SerializeField] int SpecialMoveMulti = 2;
     [SerializeField] int RecoilDamage = 2;
-    int EnemyHealth = 10;
+    int EnemyHealth = 3;
+    int EnemiesFought = 0;
     GameObject enemy = null;
     
     
@@ -27,14 +29,13 @@ public class TurnBasedCombat : MonoBehaviour
     
     void Start()
     {
-        UpdateHealth();
-
+        StartBattle();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Attack()
@@ -55,7 +56,7 @@ public class TurnBasedCombat : MonoBehaviour
 
         if (EnemyHealth <= 0)
         {
-            SceneManager.LoadScene("TheMaze");
+            EndBattle();
         }
         else { EnemyTurn(0); }
         
@@ -110,6 +111,27 @@ public class TurnBasedCombat : MonoBehaviour
     {
         int EnemyHealth = (int)health;
         return;
+    }
+
+    public void StartBattle()
+    {
+        UpdateHealth();
+        FindObjectOfType<CanvasChecker>().show();
+        Debug.Log("Battle Start");
+        if (EnemiesFought == 2)
+        {
+            EnemyHealth = 5;
+        }
+        else
+        {
+            EnemyHealth = 3;
+        }
+    }
+
+    public void EndBattle()
+    {
+        FindObjectOfType<CanvasChecker>().hide();
+        SceneManager.LoadScene("TheMaze");
     }
 }
 

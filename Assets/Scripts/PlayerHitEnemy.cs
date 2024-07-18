@@ -22,8 +22,8 @@ public class PlayerHitEnemy : MonoBehaviour
     {
         //Object TurnBasedCombat = FindObjectOfType<TurnBasedCombat>();
         Destroy(gameObject);
+        FindObjectOfType<DontDestroyOnLoad>().StartBattle();
         SceneManager.LoadScene("Combat");
-        FindObjectOfType<TurnBasedCombat>().SetEnemyHealth(EnemyHealth);
-        
+
     }
 }
