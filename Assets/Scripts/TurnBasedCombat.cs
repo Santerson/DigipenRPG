@@ -7,10 +7,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class TurnBasedCombat : MonoBehaviour
 {
     [SerializeField] int PlayerHealth = 10;
-    
+    [SerializeField] GameObject wallPrefab;
     [SerializeField] TextMeshProUGUI PlayerHealthDisplay;
     [SerializeField] TextMeshProUGUI EnemyHealthDisplay;
     [SerializeField] int PlayerMissChance = 10;
@@ -120,15 +121,18 @@ public class TurnBasedCombat : MonoBehaviour
         if (EnemiesFought == 2)
         {
             EnemyHealth = 5;
+
+            // Wall when EnemiesFought equals 2
+            Instantiate(wallPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         }
         else
         {
             EnemyHealth = 3;
         }
+
         UpdateHealth();
         FindObjectOfType<CanvasChecker>().show();
         Debug.Log("Battle Start");
-        
     }
 
     public void EndBattle()
