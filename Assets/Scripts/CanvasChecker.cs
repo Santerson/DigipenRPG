@@ -21,8 +21,8 @@ public class CanvasChecker : MonoBehaviour
     public void hide()
     {
         Debug.Log("hiding ui");
-        GameObject.Find("AttackButton").GetComponent<Image>().color = new Color(128, 0, 64, 0);
-        GameObject.Find("BlockButton").GetComponent<Image>().color = new Color(85, 205, 173, 0);
+        GameObject.Find("AttackButton").GetComponent<Image>().color = new Color32(128, 0, 64, 0);
+        GameObject.Find("BlockButton").GetComponent<Image>().color = new Color32(85, 205, 173, 0);
         GameObject.Find("AttackText").GetComponent<TextMeshProUGUI>().text = "";
         GameObject.Find("BlockText").GetComponent<TextMeshProUGUI>().text = "";
         GameObject.Find("PlayerHealth Text").GetComponent<TextMeshProUGUI>().text = "";
@@ -34,8 +34,8 @@ public class CanvasChecker : MonoBehaviour
     public void show()
     {
         Debug.Log("showing ui");
-        GameObject.Find("AttackButton").GetComponent<Image>().color = new Color(64, 64, 64, 0.3f);
-        GameObject.Find("BlockButton").GetComponent<Image>().color = new Color(85, 205, 173, 0.6f);
+        GameObject.Find("AttackButton").GetComponent<Image>().color = new Color32(201, 48, 48, 255);
+        GameObject.Find("BlockButton").GetComponent<Image>().color = new Color32(85, 205, 173, 255);
         GameObject.Find("AttackText").GetComponent<TextMeshProUGUI>().text = "Attack";
         GameObject.Find("BlockText").GetComponent<TextMeshProUGUI>().text = "Block";
         FindObjectOfType<TurnBasedCombat>().UpdateHealth();
