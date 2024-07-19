@@ -15,4 +15,9 @@ public class HealingField : MonoBehaviour
     {
         
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //FindObjectOfType<TurnBasedCombat>()
+    }
 }
