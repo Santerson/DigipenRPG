@@ -8348,6 +8348,7 @@ GameObject:
   - component: {fileID: 1293581235}
   - component: {fileID: 1293581234}
   - component: {fileID: 1293581236}
+  - component: {fileID: 1293581237}
   m_Layer: 0
   m_Name: HealingField
   m_TagString: Untagged
@@ -8457,6 +8458,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49999997
+--- !u!114 &1293581237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293581233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592ae063a321c0e4a8b11344cb38415f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1312131115 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7505849496873750155, guid: 756635a8bfab15c4d99321b116b8e317, type: 3}
