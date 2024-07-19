@@ -14,6 +14,8 @@ public class TurnBasedCombat : MonoBehaviour
     [SerializeField] GameObject wallPrefab;
     [SerializeField] TextMeshProUGUI PlayerHealthDisplay;
     [SerializeField] TextMeshProUGUI EnemyHealthDisplay;
+    [SerializeField] TextMeshProUGUI PLayerLog;
+    [SerializeField] TextMeshProUGUI EnemyLog;
     [SerializeField] int PlayerMissChance = 10;
     [SerializeField] int PlayerDamageMin = 1;
     [SerializeField] int PlayerDamageMax = 2;
@@ -21,6 +23,8 @@ public class TurnBasedCombat : MonoBehaviour
     [SerializeField] int RecoilDamage = 2;
     int EnemyHealth = 3;
     public int EnemiesFought = 0;
+    private int PlayerAction;
+    private int EnemyAction;
     GameObject enemy = null;
     
     
@@ -39,36 +43,35 @@ public class TurnBasedCombat : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// The main attack loop
+    /// </summary>
     public void Attack()
     {
-        if (Random.Range(1, 100) <= PlayerMissChance)
+        float random = Random.Range(1, 100);
+        if (random <= PlayerMissChance)
         {
-            Debug.Log("You Missed!");
-            
+            //MISS
+            PlayerAction = 0;
+        }
+        else if (random >= 90)
+        {
+            //CRITICAL
+            PlayerAction = 2;
         }
         else
         {
-            int DamageRoll = Random.Range (PlayerDamageMin, PlayerDamageMax);
-            Debug.Log("You attacked enemy for " + DamageRoll + " damage");
-            EnemyHealth = EnemyHealth - DamageRoll;
-            UpdateHealth();
+            //NORMAL HIT
+            PlayerAction = 1;
         }
-
-
-        if (EnemyHealth <= 0)
-        {
-
-            EndBattle();
-        }
-        else { EnemyTurn(0); }
-        
-        
+        EnemyTurn(); 
     }
 
     public void Block()
     {
-        Debug.Log("You Blocked");
-        EnemyTurn(1);
+        //BLOCK
+        PlayerAction = 3;
+        EnemyTurn();
     }
 
     public void Special()
@@ -76,28 +79,135 @@ public class TurnBasedCombat : MonoBehaviour
         int SpecialMoveRoll = (Random.Range(PlayerDamageMin, PlayerDamageMax)) * 2;
         EnemyHealth = EnemyHealth - SpecialMoveRoll;
         Debug.Log("You used speical attack for" + SpecialMoveRoll + " damage and took " + RecoilDamage);
-        EnemyTurn(0);
+        PLayerLog.SetText("You used speical attack for" + SpecialMoveRoll + " damage and took " + RecoilDamage);
+        EnemyTurn();
     }
 
-    void EnemyTurn(int action)
+    void EnemyTurn()
     {
-        if (action == 0)
+        float random = Random.Range(1, 100);
+        if (random <= 10)
         {
-            PlayerHealth--;
-            UpdateHealth();
-            Debug.Log("Enemy attacked you for 1 damage");
-            if (PlayerHealth <= 0)
+           //MISS
+           EnemyAction = 0;
+        }
+        else if (random <= 70)
+        {
+            //NORMAL ATTACK
+            EnemyAction = 1;
+            
+            
+        }
+        else if (random > 80)
+        {
+            //BLOCK
+            EnemyAction = 3;
+        }
+        else
+        {
+            //CRIT
+            EnemyAction = 2;
+        }
+        CalculateAction();
+    }
+
+    private void CalculateAction()
+    {
+        if (PlayerAction == 0)
+        {
+            Debug.Log("You Missed!");
+            PLayerLog.SetText("You Missed!");
+        }
+        else if (PlayerAction == 1)
+        {
+            if (EnemyAction != 3)
             {
-                SceneManager.LoadScene("You Suck");
-                FindObjectOfType<CanvasChecker>().hide();
+                int DamageRoll = Random.Range(PlayerDamageMin, PlayerDamageMax);
+                Debug.Log("You attacked enemy for " + DamageRoll + " damage");
+                PLayerLog.SetText("You hit for " + DamageRoll + " damage");
+                EnemyHealth = EnemyHealth - DamageRoll;
+                UpdateHealth();
+            }
+            else
+            {
+                PLayerLog.SetText("Enemy Blocked!");
             }
         }
-        else if (action == 1)
+        else if (PlayerAction == 2)
         {
-            Debug.Log("Enemy attack was blocked");
+            if (EnemyAction != 3)
+            {
+                int DamageRoll = Random.Range(PlayerDamageMin, PlayerDamageMax) * 2;
+                Debug.Log("You attacked enemy for " + DamageRoll + " damage");
+                PLayerLog.SetText("CRITICAL! You hit for " + DamageRoll + " damage");
+                EnemyHealth = EnemyHealth - DamageRoll;
+                UpdateHealth();
+            }
+            else
+            {
+                PLayerLog.SetText("Enemy Blocked!");
+            }
+        }
+        else if (PlayerAction == 3)
+        {
+            PLayerLog.SetText("You Blocked!");
+            Debug.Log("You Blocked");
         }
 
+        if (EnemyAction == 0)
+        {
+            EnemyLog.SetText("Enemy Missed!");
+        }
+        else if (EnemyAction == 1)
+        {
+            if (PlayerAction != 3)
+            {
+                PlayerHealth--;
+                UpdateHealth();
+                Debug.Log("Enemy attacked you for 1 damage");
+                EnemyLog.SetText("Enemy hit for 1 damage");
+            }
+            else
+            {
+                Debug.Log("Enemy attack was blocked!");
+                EnemyLog.SetText("Enemy attack was blocked!");
+            }
+        }
+        else if (EnemyAction == 2)
+        {
+            if (PlayerAction != 3)
+            {
+                PlayerHealth--;
+                PlayerHealth--;
+                UpdateHealth();
+                Debug.Log("CRITICAL! Enemy attacked you for 2 damage");
+                EnemyLog.SetText("CRITICAL! Enemy attacked you for 2 damage");
+            }
+            else
+            {
+                Debug.Log("CRITCAL BLOCKED! Enemy attack was blocked!");
+                EnemyLog.SetText("CRITCAL BLOCKED! Enemy attack was blocked!");
+            }
+        }
+        else if (EnemyAction == 3) 
+        {
+            Debug.Log("Enemy Blocked");
+            EnemyLog.SetText("Enemy Blocked!");
+        }
+
+        if (EnemyHealth <= 0)
+        {
+
+            EndBattle();
+        }
+
+        if (PlayerHealth <= 0)
+        {
+            SceneManager.LoadScene("You Suck");
+            FindObjectOfType<CanvasChecker>().hide();
+        }
     }
+
     public void UpdateHealth()
     {
         

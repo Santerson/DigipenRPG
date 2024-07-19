@@ -27,6 +27,8 @@ public class CanvasChecker : MonoBehaviour
         GameObject.Find("BlockText").GetComponent<TextMeshProUGUI>().text = "";
         GameObject.Find("PlayerHealth Text").GetComponent<TextMeshProUGUI>().text = "";
         GameObject.Find("EnemyHealth Text").GetComponent<TextMeshProUGUI>().text = "";
+        GameObject.Find("PlayerLog").GetComponent<TextMeshProUGUI>().text = "";
+        GameObject.Find("EnemyLog").GetComponent<TextMeshProUGUI>().text = "";
     }
 
     public void show()
