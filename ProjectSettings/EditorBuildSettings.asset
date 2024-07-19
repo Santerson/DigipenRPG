@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EndScreen.unity
     guid: 4bdfe1ca1c39ce24a9ce6bc5ee4077bd
+  - enabled: 1
+    path: Assets/Scenes/You Suck.unity
+    guid: 006fc0579b78b7f43970feb6cc28d46b
   m_configObjects: {}

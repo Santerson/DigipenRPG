@@ -11,6 +11,7 @@ public class CameraLocking : MonoBehaviour
     void Start()
     {
         Rigidbody2D RefCameraRB = Camera.main.GetComponent<Rigidbody2D>();
+        Camera.main.transform.position = new Vector3(0, 0, -10);
     }
 
     // Update is called once per frame
