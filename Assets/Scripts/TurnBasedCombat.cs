@@ -23,6 +23,7 @@ public class TurnBasedCombat : MonoBehaviour
     [SerializeField] int RecoilDamage = 2;
     int EnemyHealth = 3;
     public int EnemiesFought = 0;
+    private int SoulsReaped = 0;
     private int PlayerAction;
     private int EnemyAction;
     GameObject enemy = null;
@@ -259,7 +260,16 @@ public class TurnBasedCombat : MonoBehaviour
         }
         else
         {
+            ++SoulsReaped;
             SceneManager.LoadScene("TheMaze");
+        }
+    }
+
+    public void resetHP()
+    {
+        if (SoulsReaped > 1)
+        {
+            PlayerHealth = 10;
         }
     }
 }

@@ -16,8 +16,9 @@ public class HealingField : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        //FindObjectOfType<TurnBasedCombat>()
+        FindObjectOfType<TurnBasedCombat>().resetHP();
+        Debug.Log("Reset HP");
     }
 }
